@@ -1,0 +1,238 @@
+/* ============================================================
+   GitHub Profile Viewer — style.css
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #0d1117;
+  --surface:     #161b22;
+  --border:      #30363d;
+  --text:        #e6edf3;
+  --text-muted:  #8b949e;
+  --accent:      #58a6ff;
+  --green:       #3fb950;
+  --yellow:      #d29922;
+  --radius:      8px;
+  --shadow:      0 1px 3px rgba(0,0,0,0.4);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.gh-logo { width: 28px; height: 28px; color: var(--text); }
+.site-title { font-size: 1.25rem; font-weight: 600; }
+
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+.username-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.username-input:focus { border-color: var(--accent); }
+.username-input::placeholder { color: var(--text-muted); }
+.btn-search {
+  padding: 0.5rem 1rem;
+  background: var(--green);
+  color: #0d1117;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-search:hover { opacity: 0.85; }
+
+/* ── Main ────────────────────────────────────────────────── */
+.main-content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Loading ─────────────────────────────────────────────── */
+.loading {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.75rem; padding: 2rem; color: var(--text-muted);
+}
+.spinner {
+  width: 32px; height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Error ───────────────────────────────────────────────── */
+.error-message {
+  background: rgba(248,81,73,0.15);
+  border: 1px solid rgba(248,81,73,0.4);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── Profile card ────────────────────────────────────────── */
+.profile-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.avatar {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+}
+.profile-info { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+.profile-name { font-size: 1.25rem; font-weight: 600; }
+.profile-login { color: var(--text-muted); font-size: 1rem; }
+.profile-bio { margin-top: 0.25rem; }
+.profile-location { color: var(--text-muted); font-size: 0.9rem; }
+.profile-blog {
+  color: var(--accent); text-decoration: none; font-size: 0.9rem;
+}
+.profile-blog:hover { text-decoration: underline; }
+
+.profile-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.stat { display: flex; flex-direction: column; align-items: center; }
+.stat-value { font-size: 1.1rem; font-weight: 600; }
+.stat-label { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ── Repos section ───────────────────────────────────────── */
+.repos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.repos-title { font-size: 1rem; font-weight: 600; }
+.sort-controls { display: flex; align-items: center; gap: 0.5rem; }
+.sort-label { color: var(--text-muted); font-size: 0.85rem; }
+.sort-select {
+  padding: 0.3rem 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.repos-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.repo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s;
+}
+.repo-card:hover { border-color: var(--accent); }
+.repo-name {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.repo-name:hover { text-decoration: underline; }
+.repo-description {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+.repo-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.repo-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.lang-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+.site-footer a { color: var(--accent); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 540px) {
+  .profile-card { flex-direction: column; align-items: center; text-align: center; }
+  .profile-stats { justify-content: center; }
+  .site-header { padding: 1rem; }
+}

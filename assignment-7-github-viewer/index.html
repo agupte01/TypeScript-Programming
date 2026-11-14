@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GitHub Profile Viewer — search any GitHub user and explore their repos" />
+  <title>GitHub Profile Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- GitHub mark SVG icon -->
+      <svg class="gh-logo" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
+          0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7
+          3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236
+          1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332
+          -5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0
+          1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405
+          2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23
+          1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22
+          0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295
+          24 12c0-6.63-5.37-12-12-12"/>
+      </svg>
+      <h1 class="site-title">GitHub Profile Viewer</h1>
+    </div>
+
+    <!-- Search form -->
+    <form id="search-form" class="search-form" novalidate>
+      <label for="username-input" class="sr-only">GitHub username</label>
+      <input
+        type="text"
+        id="username-input"
+        class="username-input"
+        placeholder="Enter a GitHub username…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="GitHub username"
+      />
+      <button type="submit" class="btn-search">Search</button>
+    </form>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+
+    <!-- Loading -->
+    <div id="loading" class="loading" hidden role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Fetching profile…</p>
+    </div>
+
+    <!-- Error -->
+    <div id="error-message" class="error-message" hidden role="alert" aria-live="assertive">
+      <span class="error-icon">⚠️</span>
+      <p id="error-text">User not found.</p>
+    </div>
+
+    <!-- Profile card (hidden until data loads) -->
+    <section id="profile-section" class="profile-section" hidden aria-label="User profile">
+      <div class="profile-card">
+        <img id="avatar" class="avatar" src="" alt="" />
+        <div class="profile-info">
+          <h2 id="profile-name" class="profile-name"></h2>
+          <p id="profile-login" class="profile-login"></p>
+          <p id="profile-bio" class="profile-bio"></p>
+          <p id="profile-location" class="profile-location"></p>
+          <a id="profile-blog" class="profile-blog" href="#" target="_blank" rel="noopener noreferrer" hidden></a>
+          <div class="profile-stats">
+            <div class="stat"><span id="stat-repos" class="stat-value"></span><span class="stat-label">Repos</span></div>
+            <div class="stat"><span id="stat-followers" class="stat-value"></span><span class="stat-label">Followers</span></div>
+            <div class="stat"><span id="stat-following" class="stat-value"></span><span class="stat-label">Following</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Repos section -->
+    <section id="repos-section" class="repos-section" hidden aria-label="Public repositories">
+      <div class="repos-header">
+        <h3 class="repos-title">Public Repositories</h3>
+        <div class="sort-controls">
+          <label for="sort-select" class="sort-label">Sort by:</label>
+          <select id="sort-select" class="sort-select" aria-label="Sort repositories">
+            <option value="stars">Stars</option>
+            <option value="forks">Forks</option>
+            <option value="updated">Recently Updated</option>
+          </select>
+        </div>
+      </div>
+      <ul id="repos-list" class="repos-list" role="list">
+        <!-- Repo cards injected here by display.ts -->
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p>Data from <a href="https://docs.github.com/en/rest" target="_blank" rel="noopener noreferrer">GitHub REST API</a></p>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* SearchBar component styles */
+
+.form {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: #1e1e2e;
+  border: 1.5px solid #3a3a5c;
+  border-radius: 8px;
+  color: #e0e0f0;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input::placeholder { color: #666680; }
+.input:focus { border-color: #f5c518; }
+.input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background: #f5c518;
+  color: #1a1a2e;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.button:hover:not(:disabled) { opacity: 0.85; }
+.button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.srOnly {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}

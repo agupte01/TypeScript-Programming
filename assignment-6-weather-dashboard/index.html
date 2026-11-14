@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Weather Dashboard — search any city for current conditions and a 5-day forecast. Powered by Open-Meteo (no API key required)." />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">
+        <span class="title-icon" aria-hidden="true">⛅</span>
+        Weather Dashboard
+      </h1>
+      <p class="site-subtitle">Real-time weather powered by Open-Meteo · No API key required</p>
+    </div>
+  </header>
+
+  <!-- ===== SEARCH FORM ===== -->
+  <section class="search-section">
+    <div class="search-inner">
+      <form id="search-form" class="search-form" novalidate>
+        <label for="city-input" class="sr-only">Enter city name</label>
+        <input
+          type="text"
+          id="city-input"
+          class="city-input"
+          placeholder="Search for a city… e.g. Vancouver"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="City name"
+        />
+        <button type="submit" class="btn-search">Search</button>
+      </form>
+
+      <!-- °C / °F toggle — disabled until first search succeeds -->
+      <button id="unit-toggle" class="btn-unit" disabled aria-label="Toggle temperature unit">
+        Switch to °F
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- Loading indicator -->
+    <div id="loading" class="loading" hidden aria-live="polite" role="status">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Fetching weather data…</p>
+    </div>
+
+    <!-- Error message -->
+    <div id="error-message" class="error-message" hidden role="alert" aria-live="assertive">
+      <span class="error-icon" aria-hidden="true">⚠️</span>
+      <p id="error-text">Something went wrong.</p>
+    </div>
+
+    <!-- Current weather card (hidden until first successful search) -->
+    <section id="current-weather" class="current-weather" hidden aria-label="Current weather">
+      <div class="current-header">
+        <div class="current-location">
+          <h2 id="city-name" class="city-name"></h2>
+          <p id="weather-description" class="weather-description"></p>
+        </div>
+        <!-- Emoji icon rendered as text — no external image dependency -->
+        <span id="weather-icon" class="weather-icon" aria-hidden="true"></span>
+      </div>
+
+      <div class="current-temp-row">
+        <p id="temperature" class="temperature"></p>
+        <p id="feels-like" class="feels-like"></p>
+      </div>
+
+      <div class="current-stats">
+        <div class="stat">
+          <span class="stat-label">Humidity</span>
+          <span id="humidity" class="stat-value"></span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Wind</span>
+          <span id="wind-speed" class="stat-value"></span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Pressure</span>
+          <span id="pressure" class="stat-value"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5-day forecast (hidden until data arrives) -->
+    <section id="forecast-section" class="forecast-section" hidden aria-label="5-day forecast">
+      <h3 class="forecast-title">5-Day Forecast</h3>
+      <div id="forecast-row" class="forecast-row">
+        <!-- Forecast cards injected by display.ts -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p>Data from <a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">Open-Meteo</a> — free &amp; open-source, no API key required</p>
+  </footer>
+
+  <!-- Entry point — Vite handles TypeScript compilation -->
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

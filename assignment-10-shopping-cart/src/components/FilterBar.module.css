@@ -1,0 +1,47 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #2a2a3e;
+  margin-bottom: 1.5rem;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  padding: 0.35rem 0.85rem;
+  background: #1e1e2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 20px;
+  color: #8888aa;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.pill:hover { background: #2a2a4e; color: #ccccee; }
+.pill.active {
+  background: #3a3aff22;
+  border-color: #6060ff;
+  color: #aaaaff;
+  font-weight: 600;
+}
+
+.sortWrapper { display: flex; align-items: center; gap: 0.4rem; }
+.sortLabel { font-size: 0.8rem; color: #8888aa; }
+.sortSelect {
+  padding: 0.35rem 0.6rem;
+  background: #1e1e2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 6px;
+  color: #ccccee;
+  font-size: 0.85rem;
+  cursor: pointer;
+}

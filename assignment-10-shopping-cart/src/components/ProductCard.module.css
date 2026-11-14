@@ -1,0 +1,89 @@
+.card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+
+.imageWrapper {
+  position: relative;
+  background: #fff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+}
+.image { max-height: 150px; max-width: 100%; object-fit: contain; }
+
+.inCartBadge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #22c55e;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+}
+
+.info {
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.category {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8888aa;
+}
+
+.title {
+  font-size: 0.85rem;
+  color: #e0e0f0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ratingRow { display: flex; align-items: center; gap: 0.35rem; }
+.stars { font-size: 0.8rem; }
+.starFilled { color: #f5c518; }
+.starEmpty  { color: #444460; }
+.ratingCount { font-size: 0.75rem; color: #8888aa; }
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid #2a2a3e;
+}
+
+.price { font-size: 1rem; font-weight: 700; color: #64d8a0; }
+
+.addBtn {
+  padding: 0.35rem 0.75rem;
+  background: #3a3aff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.addBtn:hover { opacity: 0.85; }
+.addBtnAdded { background: #2a6aff; }
